@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    header img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-top: 1rem;
+    }
+    section {
+      padding: 2rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .project {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .project img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .project button {
+      margin-top: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #007BFF;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+    .contact input, .contact textarea {
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+    }
+    .contact button {
+      padding: 0.5rem;
+      background: #28a745;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 500px;
+    }
+    .close-btn {
+      float: right;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Yoga Adam Dewantara</h1>
+  <p>Developer Web | Mahasiswa | Pembelajar</p>
+  <img src="images/YogaSI.jpg" alt="Foto Profil">
+</header>
+
+<section id="about">
+  <h2>Tentang Saya</h2>
+  <p>Saya adalah seorang developer web yang sedang kuliah sambil bekerja. Saya senang belajar hal-hal baru, terutama di bidang teknologi dan pemrograman.</p>
+</section>
+
+<section id="projects">
+  <h2>Projek</h2>
+  <div class="projects">
+    <div class="project">
+      <img src="images/satu.jpg" alt="Projek 1">
+      <h3>Projek 1</h3>
+      <p>Aplikasi manajemen tugas berbasis web.</p>
+      <button onclick="showModal('Projek 1', 'Detail projek 1: aplikasi ini dibuat untuk membantu pengguna dalam mengatur tugas harian mereka.')">Lihat Detail</button>
+    </div>
+    <div class="project">
+      <img src="images/Screen-Shot-2020-02-23-at-7.19.04-PM-1024x640.png" alt="Projek 2">
+      <h3>Projek 2</h3>
+      <p>Sistem absensi online dengan fitur QR Code.</p>
+      <button onclick="showModal('Projek 2', 'Detail projek 2: sistem ini mempermudah absensi dengan scan QR menggunakan perangkat mobile.')">Lihat Detail</button>
+    </div>
+    <div class="project">
+      <img src="images/image-24-1068x579.png" alt="Projek 3">
+      <h3>Projek 3</h3>
+      <p>Website portfolio untuk menampilkan karya.</p>
+      <button onclick="showModal('Projek 3', 'Detail projek 3: website ini dibuat sebagai sarana untuk menunjukkan hasil karya dan kemampuan pemrograman.')">Lihat Detail</button>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Kontak</h2>
+  <form onsubmit="return validateForm()">
+    <input type="text" id="name" placeholder="Nama">
+    <input type="email" id="email" placeholder="Email">
+    <textarea id="message" placeholder="Pesan"></textarea>
+    <button type="submit">Kirim</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2025 Yoga Adam Dewantara</p>
+</footer>
+
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 id="modal-title"></h3>
+    <p id="modal-body"></p>
+  </div>
+</div>
+
+<script>
+  function showModal(title, content) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-body').textContent = content;
+    document.getElementById('modal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function validateForm() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !message) {
+      alert("Semua kolom harus diisi!");
+      return false;
+    }
+    alert("Pesan berhasil dikirim!");
+    return false; // Supaya tidak benar-benar kirim (demo saja)
+  }
+</script>
+
+</body>
+</html>
